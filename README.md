@@ -27,7 +27,7 @@ optional arguments:
                         list of user inputs like name and email
 ```
 
-### Usage Examples
+### Usage examples
 
 ```bash
 python password_strength.py
@@ -36,7 +36,7 @@ python password_strength.py
 
 python password_strength.py
 >>> Type password: DenisPa$$w0rd
->>> Password strength: 5 of 10
+>>> Password strength: 4 of 10
 
 python password_strength.py --inputs Denis denis@gmail.com
 >>> Type password: DenisPa$$w0rd

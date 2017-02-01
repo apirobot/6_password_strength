@@ -1,5 +1,6 @@
 import argparse
 from getpass import getpass
+from math import log10
 
 from zxcvbn import zxcvbn
 
@@ -33,26 +34,11 @@ def get_password_strength(password, user_inputs=[]):
     # Since ``zxcvbn`` function returns score from 0 to 4 and
     # ``get_password_strength`` should return score from 1 to 10,
     # therefore result['score'] should be changed.
-    delta = 5
     guesses = result['guesses']
-    if guesses < 1e3 + delta:
+    if guesses < 1e3:
         result['score'] = 1
-    elif guesses < 1e4 + delta:
-        result['score'] = 2
-    elif guesses < 1e5 + delta:
-        result['score'] = 3
-    elif guesses < 1e6 + delta:
-        result['score'] = 4
-    elif guesses < 1e7 + delta:
-        result['score'] = 5
-    elif guesses < 1e8 + delta:
-        result['score'] = 6
-    elif guesses < 1e9 + delta:
-        result['score'] = 7
-    elif guesses < 1e10 + delta:
-        result['score'] = 8
-    elif guesses < 1e11 + delta:
-        result['score'] = 9
+    elif guesses < 1e11:
+        result['score'] = int(log10(guesses / 10))
     else:
         result['score'] = 10
 
