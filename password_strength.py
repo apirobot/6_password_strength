@@ -4,10 +4,12 @@ from math import log10
 
 from zxcvbn import zxcvbn
 
-parser = argparse.ArgumentParser(description='Password Strength Calculator')
-parser.add_argument('-i', '--inputs', nargs='+', type=str,
-                    help='list of user inputs like name and email')
-args = parser.parse_args()
+
+def create_parser():
+    parser = argparse.ArgumentParser(description='Password Strength Calculator')
+    parser.add_argument('-i', '--inputs', nargs='+', type=str,
+                        help='list of user inputs like name and email')
+    return parser
 
 
 def input_password():
@@ -46,6 +48,9 @@ def get_password_strength(password, user_inputs=[]):
 
 
 def main():
+    parser = create_parser()
+    args = parser.parse_args()
+
     password = input_password()
     if args.inputs is not None:
         password_strength = get_password_strength(password, args.inputs)
